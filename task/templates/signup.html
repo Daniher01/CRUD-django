@@ -1,0 +1,12 @@
+<h1>Hola mundo</h1>
+
+<form action="/signup/" method='POST'>
+    {% csrf_token %}       {% comment %} token de seguridad del formulario  {% endcomment %}
+    {{form.as_p}}      {% comment %} as_p acomoda el form  {% endcomment %}
+
+    <button>
+        Signup
+    </button>
+
+</form>
+
