@@ -18,4 +18,28 @@
         python manage.py startapp nombre_app
     ```        
 
+### Crear las tablas
+``` shell
+    python manage.py migrate 
+```
+
+### Crear cookies de sesion
+```shell
+    #primero importar
+    from django.contrib.auth import login
+
+    #creando la cookie
+    login(request, user)
+```
+
+### Cerrar sesion y elimina cookie
+```shell
+    #primero importar
+    from django.contrib.auth import logout
+
+    #eliminando la cookie
+    logout(request, user)
+```
+
+
         
