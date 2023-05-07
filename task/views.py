@@ -85,4 +85,4 @@ def signin(request):
             )
         else:
             login(request, user)
-            return redirect('task')
+            return redirect("task")
