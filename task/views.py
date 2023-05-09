@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import TaskForm
 
 # Create your views here.
 
@@ -57,6 +58,26 @@ def signup(request):
 
 def task(request):
     return render(request, "task.html")
+
+
+def create_task(request):
+    if request.method == "GET":
+        return render(request, "create_task.html", {"form": TaskForm})
+    else:
+        try:
+            form = TaskForm(request.POST)  # ? crea un formulario
+            new_task = form.save(
+                commit=False
+            )  # ? commit=False evita que lo guarde en la bd
+            new_task.user = request.user
+            new_task.save()
+            return redirect("task")
+        except ValueError:
+            return render(
+                request,
+                "create_task.html",
+                {"form": TaskForm, "error": "Datos invalidos"},
+            )
 
 
 def signout(request):
